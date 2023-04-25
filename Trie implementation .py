@@ -12,13 +12,13 @@ def make_trie(*words):
         current_dict = root 
         for letter in word:
             if letter not in current_dict:
-                current_dict[letter] = {}
-            current_dict = current_dict[letter]
-        if letter == word[-1]:
+                current_dict[letter] = {} #aik letter ki aik dict banana
+            current_dict = current_dict[letter] #usi letter ke ander aik dict banana
+        if letter == word[-1]: #jab end ho iska mtlb letter end hogaya hai aur Flag daaldo 
             current_dict["Flag"] = True 
     return root
     
-make_trie("Shaaf","Murtajiz","Moogi","Umair","Shafique")
+make_trie("Shaaf")
 
 #deletion
 
@@ -31,26 +31,27 @@ def delete_from_trie(root, word):
         if c not in node:
             # Word not found in trie, do nothing
             return
-        parents[i] = node
-        node = node[c]
+        parents[i] = node #har letter ko aik list mein store krana taake baad mein use kr sakein
+        node = node[c] #taake we can reach the flag
     
-    # If the '$' key is not in the node, the word is not in the trie, so do nothing
+    # If the 'Flag' key is not in the node, the word is not in the trie, so do nothing
     if 'Flag' not in node:
         return
     
-    # Remove the '$' key from the node to signify that the word is no longer in the trie
+    # Remove the 'Flag' key from the node to signify that the word is no longer in the trie
     del node['Flag']
     
     # Traverse the word in reverse order and remove any nodes that have no children
-    for i in range(len(word)-1, -1, -1):
-        if not node and parents[i]:
+    for i in range(len(word)-1, -1, -1): #reverse mein chalega 
+        if not node and parents[i]: #agr node ki value none hai aur parents mein kuch hai toh krega delete
             # If the current node has no children and is not the root node, remove it
             del parents[i][word[i]]
             node = parents[i]
-        else:
+        else: #agr node none nahi iska mtlb parents[i] wale letter ke bache hain usko na maaro 
             # If the current node has children or is the root node, we're done
             break
 
+delete_from_trie(root, "Shaaf")
 
 
 # delete_from_trie(root,"Shaaf")
@@ -59,6 +60,18 @@ def delete_from_trie(root, word):
 # searching in trie using dfs
 
 print(root)
+
+# this intial search checks if a word is in trie or not
+# def search_trie(root, word):
+#     node = root
+#     for c in word:
+#         if c not in node:
+#             return False
+#         node = node[c]
+#     return 'Flag' in node
+
+
+#  this search returns the words the start with a semilar prefix
 
 def search_trie(root, prefix):
     # Traverse the trie to the point where the prefix ends
@@ -84,5 +97,5 @@ def search_trie(root, prefix):
 
 
 print(search_trie(root,"S"))
-delete_from_trie(root,"Shafique")
+delete_from_trie(root,"Shaaf")
 print(root)
