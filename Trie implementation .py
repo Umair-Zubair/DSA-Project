@@ -53,20 +53,36 @@ def delete_from_trie(root, word):
 
 
 
-delete_from_trie(root,"Shaaf")
-# delete_from_trie("Shafique")
+# delete_from_trie(root,"Shaaf")
+
 
 # searching in trie using dfs
 
 print(root)
 
-def search_trie(root, word):
+def search_trie(root, prefix):
+    # Traverse the trie to the point where the prefix ends
     node = root
-    for c in word:
+    for c in prefix:
         if c not in node:
-            return False
+            return []
         node = node[c]
-    return 'Flag' in node
+    
+    # Perform a depth-first search to find all words with the prefix
+    results = []
+    stack = [(node, prefix)]
+    while stack:
+        current_dict, current_prefix = stack.pop()
+        if 'Flag' in current_dict:
+            results.append(current_prefix)
+        for letter, child_dict in current_dict.items():
+            if letter != 'Flag':
+                stack.append((child_dict, current_prefix + letter))
+    
+    return results
 
 
-print(search_trie(root,"Shaaf"))
+
+print(search_trie(root,"S"))
+delete_from_trie(root,"Shafique")
+print(root)
