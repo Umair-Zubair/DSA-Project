@@ -59,16 +59,16 @@ def delete_from_trie(root, word):
 
 # searching in trie using dfs
 
-print(root)
+# print(root)
 
 # this intial search checks if a word is in trie or not
-# def search_trie(root, word):
-#     node = root
-#     for c in word:
-#         if c not in node:
-#             return False
-#         node = node[c]
-#     return 'Flag' in node
+def search_name(root, word):
+    node = root
+    for c in word:
+        if c not in node:
+            return False
+        node = node[c]
+    return 'Flag' in node
 
 
 #  this search returns the words the start with a semilar prefix
@@ -96,10 +96,27 @@ def search_trie(root, prefix):
 
 
 
-print(search_trie(root,"S"))
+# print(search_trie(root,"S"))
 # delete_from_trie(root,"Shaaf")
 # print(root)
 
 
 
 # "Aria", "Ace", "Aspen", "Atlas", "Autumn", "Blaze", "Blue", "Cash", "Clover", "Cruz", "Dahlia", "Diesel", "Eden", "Fox", "Hunter", "Jade", "Jagger", "Kai", "Kingston", "Knox", "Luna", "Levi", "Maverick", "Meadow", "Marley", "Nova", "Ocean", "Onyx", "Orion", "Phoenix", "Poppy", "Raven", "Ruby", "Scarlett", "Skye", "Saffron", "Summer", "Storm", "Violet", "Willow"
+
+
+def Select_Funtion():
+    print("Please select the option from below by typing the number corresponding to it.")
+    print("1. Create a New Contact\n2. Search a Contact.\n3. Delete a Contact.")
+    option = int(input())
+    name = input("Please Enter a Name:")
+    if option == 1:
+        make_trie(name)
+    elif option == 2:
+        print(search_name(root,name))
+    elif option == 3:
+        delete_from_trie(root,name)
+    else:
+        print("Select a Valid Option.")
+        
+Select_Funtion()
