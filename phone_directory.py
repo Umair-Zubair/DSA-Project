@@ -1,9 +1,10 @@
-
-
 #making trie 
-root = {}
+
 def make_trie(*words):
-    global root
+    with open("tst.txt","r") as testing:
+        root = testing.read()
+        if len(root)!=0:
+            root = eval(root)
     if len(words) == 0:
         return "Please enter a name"
     for word in words:
@@ -16,13 +17,19 @@ def make_trie(*words):
             current_dict = current_dict[letter] #usi letter ke ander aik dict banana
         if letter == word[-1]: #jab end ho iska mtlb letter end hogaya hai aur Flag daaldo 
             current_dict["Flag"] = True 
+        with open("tst.txt","w") as out:
+            out.write(str(root))
     return root
     
-make_trie("Aria", "Ace", "Aspen", "Atlas", "Autumn", "Blaze", "Blue", "Cash", "Clover", "Cruz", "Dahlia", "Diesel", "Eden", "Fox", "Hunter", "Jade", "Jagger", "Kai", "Kingston", "Knox", "Luna", "Levi", "Maverick", "Meadow", "Marley", "Nova", "Ocean", "Onyx", "Orion", "Phoenix", "Poppy", "Raven", "Ruby", "Scarlett", "Skye", "Saffron", "Summer", "Storm", "Violet", "Willow")
-
+# make_trie("Aria", "Ace", "Aspen", "Atlas", "Autumn", "Blaze", "Blue", "Cash", "Clover", "Cruz", "Dahlia", "Diesel", "Eden", "Fox", "Hunter", "Jade", "Jagger", "Kai", "Kingston", "Knox", "Luna", "Levi", "Maverick", "Meadow", "Marley", "Nova", "Ocean", "Onyx", "Orion", "Phoenix", "Poppy", "Raven", "Ruby", "Scarlett", "Skye", "Saffron", "Summer", "Storm", "Violet", "Willow")
+# make_trie("Umair")
+with open("tst.txt","r") as testing:
+    root = eval(testing.read())
 #deletion
-
+# print(root)
 def delete_from_trie(root, word):
+    with open("tst.txt","r") as testing:
+        root = eval(testing.read())
     node = root
     parents = [None] * (len(word) + 1)  # keep track of parent nodes
     
@@ -47,12 +54,17 @@ def delete_from_trie(root, word):
             # If the current node has no children and is not the root node, remove it
             del parents[i][word[i]]
             node = parents[i]
-        else: #agr node none nahi iska mtlb parents[i] wale letter ke bache hain usko na maaro 
+        else: #agr node none nahi iska mtlb parents[i] wale letter ke bache hain usko na delete kero
             # If the current node has children or is the root node, we're done
             break
+    with open("tst.txt","w") as out:
+            out.write(str(root))
+    
 
-# delete_from_trie(root, "Shaaf")
-
+delete_from_trie(root, "Umair")
+# with open("tst.txt","r") as testing:
+#     root = eval(testing.read())
+# print(root)
 
 # delete_from_trie(root,"Shaaf")
 
@@ -100,7 +112,7 @@ def search_trie(root, prefix):
 # delete_from_trie(root,"Shaaf")
 # print(root)
 
-
+print(search_trie(root,"M"))
 
 # "Aria", "Ace", "Aspen", "Atlas", "Autumn", "Blaze", "Blue", "Cash", "Clover", "Cruz", "Dahlia", "Diesel", "Eden", "Fox", "Hunter", "Jade", "Jagger", "Kai", "Kingston", "Knox", "Luna", "Levi", "Maverick", "Meadow", "Marley", "Nova", "Ocean", "Onyx", "Orion", "Phoenix", "Poppy", "Raven", "Ruby", "Scarlett", "Skye", "Saffron", "Summer", "Storm", "Violet", "Willow"
 
@@ -119,4 +131,4 @@ def Select_Funtion():
     else:
         print("Select a Valid Option.")
         
-Select_Funtion()
+# Select_Funtion()
