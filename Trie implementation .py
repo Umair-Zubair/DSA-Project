@@ -18,7 +18,7 @@ def make_trie(*words):
             current_dict["Flag"] = True 
     return root
     
-make_trie("Shaaf")
+make_trie("Aria", "Ace", "Aspen", "Atlas", "Autumn", "Blaze", "Blue", "Cash", "Clover", "Cruz", "Dahlia", "Diesel", "Eden", "Fox", "Hunter", "Jade", "Jagger", "Kai", "Kingston", "Knox", "Luna", "Levi", "Maverick", "Meadow", "Marley", "Nova", "Ocean", "Onyx", "Orion", "Phoenix", "Poppy", "Raven", "Ruby", "Scarlett", "Skye", "Saffron", "Summer", "Storm", "Violet", "Willow")
 
 #deletion
 
@@ -51,7 +51,7 @@ def delete_from_trie(root, word):
             # If the current node has children or is the root node, we're done
             break
 
-delete_from_trie(root, "Shaaf")
+# delete_from_trie(root, "Shaaf")
 
 
 # delete_from_trie(root,"Shaaf")
@@ -97,5 +97,9 @@ def search_trie(root, prefix):
 
 
 print(search_trie(root,"S"))
-delete_from_trie(root,"Shaaf")
-print(root)
+# delete_from_trie(root,"Shaaf")
+# print(root)
+
+
+
+# "Aria", "Ace", "Aspen", "Atlas", "Autumn", "Blaze", "Blue", "Cash", "Clover", "Cruz", "Dahlia", "Diesel", "Eden", "Fox", "Hunter", "Jade", "Jagger", "Kai", "Kingston", "Knox", "Luna", "Levi", "Maverick", "Meadow", "Marley", "Nova", "Ocean", "Onyx", "Orion", "Phoenix", "Poppy", "Raven", "Ruby", "Scarlett", "Skye", "Saffron", "Summer", "Storm", "Violet", "Willow"
