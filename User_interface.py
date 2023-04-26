@@ -29,7 +29,7 @@ delete_label.pack(pady=(20, 10))
 
 # Create a function to change the screen
 def change_screen(frame_name):
-    Interface.geometry("600x400")
+    Interface.geometry("800x600")
     search_frame.pack_forget()
     input_frame.pack_forget()
     delete_frame.pack_forget()
@@ -53,7 +53,19 @@ def change_screen(frame_name):
         new_label.pack(pady=(20, 10))
         input_button = tk.Button(new_frame, text="Add Name", command=add_name, font=("Arial", 18))
         input_button.pack(pady=(0, 20))
-
+    elif frame_name == "Searching":
+        def perform_search():
+            query = search_entry.get()
+            results = search_trie(root, query)
+            output_label.config(text="\n".join(results))
+        search_label = tk.Label(new_frame, text="Enter your search query:", font=("Arial", 18))
+        search_label.pack(pady=(20, 10))
+        search_entry = tk.Entry(new_frame, font=("Arial", 18))
+        search_entry.pack(pady=(0, 10))
+        search_button = tk.Button(new_frame, text="Search", command=perform_search, font=("Arial", 18))
+        search_button.pack()
+        output_label = tk.Label(new_frame, text="", font=("Arial", 18))
+        output_label.pack(pady=(10, 0))
 # Create buttons for each frame
 search_button = tk.Button(search_frame, text="Search", command=lambda: change_screen("Searching"), font=("Arial", 18))
 search_button.pack(pady=(0, 20))
@@ -72,5 +84,3 @@ terminate_button.pack(side=tk.BOTTOM, pady=20)
 
 # Start the main loop
 Interface.mainloop()
-
-print(root)
