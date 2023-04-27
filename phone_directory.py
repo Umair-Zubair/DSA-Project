@@ -111,7 +111,7 @@ def search_trie(root, prefix):
 
 
 
-print(search_trie(root,"S"))
+# print(search_trie(root,"S"))
 # delete_from_trie(root,"Shaaf")
 # print(root)
 
