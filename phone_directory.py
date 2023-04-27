@@ -1,7 +1,6 @@
 #making trie 
 
 def make_trie(*words):
-    global root
     with open("tst.txt","r") as testing:
         root = testing.read()
         if len(root)!=0:
