@@ -1,6 +1,7 @@
 #making trie 
 
 def make_trie(*words):
+    global root
     with open("tst.txt","r") as testing:
         root = testing.read()
         if len(root)!=0:
@@ -17,12 +18,14 @@ def make_trie(*words):
             current_dict = current_dict[letter] #usi letter ke ander aik dict banana
         if letter == word[-1]: #jab end ho iska mtlb letter end hogaya hai aur Flag daaldo 
             current_dict["Flag"] = True 
-        with open("tst.txt","w") as out:
-            out.write(str(root))
+    with open("tst.txt","w") as out:
+        out.write(str(root))
     return root
+        
     
 # make_trie("Aria", "Ace", "Aspen", "Atlas", "Autumn", "Blaze", "Blue", "Cash", "Clover", "Cruz", "Dahlia", "Diesel", "Eden", "Fox", "Hunter", "Jade", "Jagger", "Kai", "Kingston", "Knox", "Luna", "Levi", "Maverick", "Meadow", "Marley", "Nova", "Ocean", "Onyx", "Orion", "Phoenix", "Poppy", "Raven", "Ruby", "Scarlett", "Skye", "Saffron", "Summer", "Storm", "Violet", "Willow")
 # make_trie("Umair")
+
 with open("tst.txt","r") as testing:
     root = eval(testing.read())
 #deletion
@@ -62,8 +65,8 @@ def delete_from_trie(root, word):
     
 
 delete_from_trie(root, "Umair")
-# with open("tst.txt","r") as testing:
-#     root = eval(testing.read())
+with open("tst.txt","r") as testing:
+    root = eval(testing.read())
 # print(root)
 
 # delete_from_trie(root,"Shaaf")
@@ -108,27 +111,27 @@ def search_trie(root, prefix):
 
 
 
-# print(search_trie(root,"S"))
+print(search_trie(root,"S"))
 # delete_from_trie(root,"Shaaf")
 # print(root)
 
-print(search_trie(root,"M"))
+# print(search_trie(root,"M"))
 
 # "Aria", "Ace", "Aspen", "Atlas", "Autumn", "Blaze", "Blue", "Cash", "Clover", "Cruz", "Dahlia", "Diesel", "Eden", "Fox", "Hunter", "Jade", "Jagger", "Kai", "Kingston", "Knox", "Luna", "Levi", "Maverick", "Meadow", "Marley", "Nova", "Ocean", "Onyx", "Orion", "Phoenix", "Poppy", "Raven", "Ruby", "Scarlett", "Skye", "Saffron", "Summer", "Storm", "Violet", "Willow"
 
 
-def Select_Funtion():
-    print("Please select the option from below by typing the number corresponding to it.")
-    print("1. Create a New Contact\n2. Search a Contact.\n3. Delete a Contact.")
-    option = int(input())
-    name = input("Please Enter a Name:")
-    if option == 1:
-        make_trie(name)
-    elif option == 2:
-        print(search_name(root,name))
-    elif option == 3:
-        delete_from_trie(root,name)
-    else:
-        print("Select a Valid Option.")
+# def Select_Funtion():
+#     print("Please select the option from below by typing the number corresponding to it.")
+#     print("1. Create a New Contact\n2. Search a Contact.\n3. Delete a Contact.")
+#     option = int(input())
+#     name = input("Please Enter a Name:")
+#     if option == 1:
+#         make_trie(name)
+#     elif option == 2:
+#         print(search_name(root,name))
+#     elif option == 3:
+#         delete_from_trie(root,name)
+#     else:
+#         print("Select a Valid Option.")
         
-# Select_Funtion()
+# # Select_Funtion()

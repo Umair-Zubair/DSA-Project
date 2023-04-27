@@ -39,20 +39,22 @@ def change_screen(frame_name):
     new_label.pack()
     if frame_name == "Input":
         def add_name():
-            name_label.config(text="Enter a name:")
-            name_entry.pack(side=tk.LEFT, padx=(10, 0))
-            add_button.pack(side=tk.LEFT, padx=(10, 0))
-
+            name = name_entry.get()
+            make_trie(name)
+            name_entry.delete(0, tk.END)
+            name_label.config(text=f"Added '{name}' to trie!")
+            
         name_frame = tk.Frame(new_frame, pady=10)
         name_frame.pack()
         name_label = tk.Label(name_frame, font=("Arial", 18))
+        name_label.pack()
         name_entry = tk.Entry(name_frame, font=("Arial", 18))
-        add_button = tk.Button(name_frame, text="Add", font=("Arial", 18), command=lambda: [make_trie(name_entry.get()), name_entry.delete(0, tk.END), name_label.config(text="")])
+        name_entry.pack(side=tk.LEFT, padx=(10, 0))
+        add_button = tk.Button(name_frame, text="Add", font=("Arial", 18), command=add_name)
+        add_button.pack(side=tk.LEFT, padx=(10, 0))
 
-        new_label = tk.Label(new_frame, text="Click the button to add a name to the trie", font=("Arial", 28))
+        new_label = tk.Label(new_frame, text="Enter a name to add to the trie:", font=("Arial", 28))
         new_label.pack(pady=(20, 10))
-        input_button = tk.Button(new_frame, text="Add Name", command=add_name, font=("Arial", 18))
-        input_button.pack(pady=(0, 20))
     elif frame_name == "Searching":
         def perform_search():
             query = search_entry.get()
@@ -66,6 +68,19 @@ def change_screen(frame_name):
         search_button.pack()
         output_label = tk.Label(new_frame, text="", font=("Arial", 18))
         output_label.pack(pady=(10, 0))
+    elif frame_name == "Delete":
+        def delete_name():
+            name = delete_entry.get()
+            delete_from_trie(root, name)
+            delete_label.config(text="Name deleted from trie!")
+            delete_entry.delete(0, tk.END)
+
+        delete_label = tk.Label(new_frame, text="Enter the name to delete:", font=("Arial", 18))
+        delete_label.pack(pady=(20, 10))
+        delete_entry = tk.Entry(new_frame, font=("Arial", 18))
+        delete_entry.pack(pady=(0, 10))
+        delete_button = tk.Button(new_frame, text="Delete", command=delete_name, font=("Arial", 18))
+        delete_button.pack()
 # Create buttons for each frame
 search_button = tk.Button(search_frame, text="Search", command=lambda: change_screen("Searching"), font=("Arial", 18))
 search_button.pack(pady=(0, 20))
