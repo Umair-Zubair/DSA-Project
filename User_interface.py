@@ -1,10 +1,11 @@
 import tkinter as tk
 from phone_directory import *
+from tkinter import scrolledtext
 
 
 # Create the main window
 Interface = tk.Tk()
-Interface.geometry("600x400")
+Interface.geometry("1920x1080")
 Interface.title("My App")
 
 # Create the three frames
@@ -29,7 +30,7 @@ delete_label.pack(pady=(20, 10))
 
 # Create a function to change the screen
 def change_screen(frame_name):
-    Interface.geometry("800x600")
+    Interface.geometry("1920x1080")
     search_frame.pack_forget()
     input_frame.pack_forget()
     delete_frame.pack_forget()
@@ -59,15 +60,29 @@ def change_screen(frame_name):
         def perform_search():
             query = search_entry.get()
             results = search_trie(root, query)
-            output_label.config(text="\n".join(results))
+            output_text.delete("1.0", tk.END)  # Clear previous results
+            output_text.insert(tk.END, "\n".join(results))
+
+        new_window = tk.Tk()
+        new_window.geometry("800x600")
+
+        new_frame = tk.Frame(new_window)
+        new_frame.pack(expand=True, fill="both")
+
         search_label = tk.Label(new_frame, text="Enter your search query:", font=("Arial", 18))
         search_label.pack(pady=(20, 10))
+
         search_entry = tk.Entry(new_frame, font=("Arial", 18))
         search_entry.pack(pady=(0, 10))
+
         search_button = tk.Button(new_frame, text="Search", command=perform_search, font=("Arial", 18))
         search_button.pack()
-        output_label = tk.Label(new_frame, text="", font=("Arial", 18))
-        output_label.pack(pady=(10, 0))
+
+        output_frame = tk.Frame(new_frame)
+        output_frame.pack(expand=True, fill="both", pady=(10, 0))
+
+        output_text = scrolledtext.ScrolledText(output_frame, wrap="word", font=("Arial", 18))
+        output_text.pack(expand=True, fill="both")
     elif frame_name == "Delete":
         def delete_name():
             name = delete_entry.get()

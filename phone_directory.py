@@ -63,7 +63,7 @@ def delete_from_trie(root, word):
             out.write(str(root))
     
 
-delete_from_trie(root, "Umair")
+# delete_from_trie(root, "Umair")
 with open("tst.txt","r") as testing:
     root = eval(testing.read())
 # print(root)
