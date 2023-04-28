@@ -78,7 +78,7 @@ with open("tst.txt","r") as testing:
 # this intial search checks if a word is in trie or not
 def search_name(root, word):
     node = root
-    for c in word:
+    for c in word: #simple search
         if c not in node:
             return False
         node = node[c]
@@ -102,7 +102,7 @@ def search_trie(root, prefix):
         current_dict, current_prefix = stack.pop()
         if 'Flag' in current_dict:
             results.append(current_prefix)
-        for letter, child_dict in current_dict.items():
+        for letter, child_dict in current_dict.items(): #letter joh hai woh key hai aur joh value hai woh child dictionary hai 
             if letter != 'Flag':
                 stack.append((child_dict, current_prefix + letter))
     
